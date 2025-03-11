@@ -1,13 +1,13 @@
 using System.Linq;
 using Unity.Cinemachine;
 using UnityEngine;
-
+using UnityEngine.UI;  // Add this line for Slider
 public class PlayerController : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private InputManager inputManager;
     [Header("Movement Parameters")]
-    [SerializeField] private float maxSpeed;
+    [SerializeField] public float maxSpeed;
     [SerializeField] private float acceleration;
     [SerializeField] private float jumpForce;
     [SerializeField] private float dashForce;
@@ -26,6 +26,12 @@ public class PlayerController : MonoBehaviour
 
     private RaycastHit rightHit;
     private RaycastHit leftHit;
+
+    public void UpdatePlayerMaxSpeed(float speed)
+    {
+        Debug.Log("Speed: " + speed);
+        maxSpeed = speed;
+    }
     private void Awake()
     {
         inputManager.OnMove.AddListener(MovePlayer);
